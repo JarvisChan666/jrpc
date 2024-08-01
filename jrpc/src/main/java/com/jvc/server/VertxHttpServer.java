@@ -10,15 +10,7 @@ public class VertxHttpServer implements HttpServer {
         io.vertx.core.http.HttpServer server = vertx.createHttpServer();
 
         // Listen port and handle request
-        server.requestHandler(request -> {
-            System.out.println("Received request: " + request.method() + "" + request.uri());
-        
-            // Send HTTP response
-
-            request.response()
-                    .putHeader("content-type", "text/plain")
-                    .end("Hello vertx server!");
-        });
+        server.requestHandler(new HttpServerHandler());
 
         // Launch HTTP Server and listen to port
         server.listen(port, result -> {
@@ -28,7 +20,5 @@ public class VertxHttpServer implements HttpServer {
                 System.err.println("Failed to run server" + result.cause());
             }
         });
-
-
     }
 }
