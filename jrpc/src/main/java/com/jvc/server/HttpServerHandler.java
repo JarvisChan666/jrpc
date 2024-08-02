@@ -2,6 +2,7 @@ package com.jvc.server;
 
 import java.io.IOException;
 import java.lang.reflect.Method;
+import java.util.Arrays;
 
 import com.jvc.model.RpcRequest;
 import com.jvc.model.RpcResponse;
@@ -53,8 +54,21 @@ public class HttpServerHandler implements Handler<HttpServerRequest>{
             try {
                 // Get the class and call it by "invoke"
                 Class<?> implClass = LocalRegistry.get(rpcRequest.getServiceName());
+                
                 Method method = implClass.getMethod(rpcRequest.getMethodName(), rpcRequest.getParameterTypes());
-                Object result = method.invoke(implClass.newInstance(), rpcRequest.getArgs());
+                // Debugging output
+                String methodName = method.getName();
+                Class<?>[] methodParaType = method.getParameterTypes();
+                Object requestArgs = rpcRequest.getArgs();
+                Object test = implClass.getDeclaredConstructor().newInstance();
+                Class<?> returnType = method.getReturnType();
+                System.out.println(methodName);
+                System.out.println(methodParaType);
+                System.out.println(requestArgs);
+                System.out.println(test);
+                System.out.println(returnType);
+
+                Object result = method.invoke(implClass.getDeclaredConstructor().newInstance(), rpcRequest.getArgs());
 
                 // encapsulate
                 rpcResponse.setData(result);

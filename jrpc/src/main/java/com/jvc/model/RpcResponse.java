@@ -32,23 +32,5 @@ public class RpcResponse implements Serializable{
      */
     private Exception exception;
 
-    public void setMessage(String message) {
-        // TODO Auto-generated method stub
-        this.message = message;
-    }
 
-    public void setData(Object data) {
-        // TODO Auto-generated method stub
-        this.data = data;
-    }
-
-    public void setDataType(Class<?> dataType) {
-        // TODO Auto-generated method stub
-        this.dataType = dataType;
-    }
-
-    public void setException(Exception e) {
-        // TODO Auto-generated method stub
-        this.exception = e;
-    }
 }

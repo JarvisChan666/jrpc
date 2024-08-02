@@ -15,25 +15,25 @@ import com.jvc.serializer.Serializer;
 
 public class UserServiceProxy implements UserService {
     public User getUser(User user) {
-        Serializer serializer = new JdkSerializer();
+        final Serializer serializer = new JdkSerializer();
 
         // Send request
         RpcRequest rpcRequest = RpcRequest.builder()
-                .serviceName("getUser")
+                .serviceName(UserService.class.getName())
+                .methodName("getUser")
                 .parameterTypes(new Class[] { User.class })
                 .args(new Object[] { user })
                 .build();
 
         try {
             byte[] bodyBytes = serializer.serialize(rpcRequest);
-            byte[] result;
             try (HttpResponse httpResponse = HttpRequest.post("http://localhost:8080")
                     .body(bodyBytes)
                     .execute()) {
-                result = httpResponse.bodyBytes();
+                byte[] result = httpResponse.bodyBytes();
+                RpcResponse rpcResponse = serializer.deserialize(result, RpcResponse.class);
+                return (User) rpcResponse.getData();
             }
-            RpcResponse rpcResponse = serializer.deserialize(result, RpcResponse.class);
-            return (User) rpcResponse.getData();
         } catch (IOException e) {
             e.printStackTrace();
         }

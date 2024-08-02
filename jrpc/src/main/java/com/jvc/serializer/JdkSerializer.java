@@ -11,15 +11,15 @@ public class JdkSerializer implements Serializer {
      * Serialize
      */
 
-     @Override
-     public <T> byte[] serialize(T object) throws IOException {
+    @Override
+    public <T> byte[] serialize(T object) throws IOException {
         ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
         ObjectOutputStream objectOutputStream = new ObjectOutputStream(outputStream);
 
         objectOutputStream.writeObject(object);
         objectOutputStream.close();
         return outputStream.toByteArray();
-     }
+    }
 
     @Override
     public <T> T deserialize(byte[] bytes, Class<T> type) throws IOException {
@@ -28,12 +28,10 @@ public class JdkSerializer implements Serializer {
         try {
             return (T) objectInputStream.readObject();
         } catch (ClassNotFoundException e) {
-            // TODO: handle exception
             throw new RuntimeException(e);
         } finally {
             objectInputStream.close();
         }
     }
 
-    }
 }
