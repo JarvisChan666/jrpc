@@ -8,3 +8,6 @@ mvn archetype:generate -DgroupId=com.jvc -DartifactId=common -DarchetypeArtifact
 mvn archetype:generate -DgroupId=com.jvc -DartifactId=provider -DarchetypeArtifactId=maven-archetype-quickstart -DinteractiveMode=false
 
 mvn archetype:generate -DgroupId=com.jvc -DartifactId=jrpc -DarchetypeArtifactId=maven-archetype-quickstart -DinteractiveMode=false
+
+## How this RPC work
+

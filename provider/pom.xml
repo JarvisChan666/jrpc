@@ -16,7 +16,7 @@
     </dependency>
     <dependency>
         <groupId>com.jvc</groupId>
-        <artifactId>jrpc</artifactId>
+        <artifactId>jrpc-core</artifactId>
         <version>1.0-SNAPSHOT</version>
     </dependency>
     <dependency>
