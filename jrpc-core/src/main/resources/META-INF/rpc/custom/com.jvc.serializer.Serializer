@@ -1,0 +1,2 @@
+c=com.jvc.serializer.Serializer.JsonSerializer
+d=com.jvc.serializer.Serializer.KryoSerializer

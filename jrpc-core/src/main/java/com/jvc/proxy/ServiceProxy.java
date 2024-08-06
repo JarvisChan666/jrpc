@@ -4,10 +4,12 @@ import java.io.IOException;
 import java.lang.reflect.InvocationHandler;
 import java.lang.reflect.Method;
 
+import com.jvc.RpcApplication;
 import com.jvc.model.RpcRequest;
 import com.jvc.model.RpcResponse;
 import com.jvc.serializer.JdkSerializer;
 import com.jvc.serializer.Serializer;
+import com.jvc.serializer.SerializerFactory;
 
 import cn.hutool.http.HttpRequest;
 import cn.hutool.http.HttpResponse;
@@ -19,7 +21,8 @@ public class ServiceProxy implements InvocationHandler {
     // and use these args to build object
     @Override
     public Object invoke(Object proxy, Method method, Object[] args) throws Throwable {
-        Serializer serializer = new JdkSerializer();
+        // 指定序列化器
+        final Serializer serializer = SerializerFactory.getInstance(RpcApplication.getRpcConfig().getSerializer());
 
         // build request (dynamic way)
         RpcRequest rpcRequest = RpcRequest.builder()

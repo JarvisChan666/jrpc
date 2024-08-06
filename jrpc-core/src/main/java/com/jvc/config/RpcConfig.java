@@ -1,5 +1,7 @@
 package com.jvc.config;
 
+import com.jvc.serializer.SerializerKeys;
+
 import lombok.Data;
 
 /**
@@ -31,4 +33,9 @@ public class RpcConfig {
      * Mock 
      */
     private boolean mock = false;
+
+    /**
+     * serializer
+     */
+    private String serializer = SerializerKeys.JDK;
 }

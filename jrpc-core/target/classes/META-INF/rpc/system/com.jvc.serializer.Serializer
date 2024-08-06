@@ -1,0 +1,2 @@
+c=com.jvc.serializer.Serializer.JdkSerializer
+d=com.jvc.serializer.Serializer.HessianSerializer
